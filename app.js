@@ -8,16 +8,18 @@ import React from 'react';
 import { Button, View, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
 
-import  Home  from './views/home';
-import Hello  from './views/hello';
+import Home from './views/home';
+import Hello from './views/hello';
+import Login from './views/login';
 
 const RootStack = createStackNavigator(
   {
+    Login: Login,
     Home: Home,
     Hello: Hello,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
     navigationOptions: {
       headerStyle: {
         backgroundColor: '#f4511e',

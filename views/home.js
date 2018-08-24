@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   searchBar:{
-    marginTop: Platform.OS === 'ios'?20:0, //判断android还是ios
+    // marginTop: Platform.OS === 'ios'?20:0, //判断android还是ios
     height:40,
     flexDirection: 'row' 
   },
