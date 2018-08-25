@@ -11,12 +11,14 @@ import { createStackNavigator } from 'react-navigation'; // Version can be speci
 import Home from './views/home';
 import Hello from './views/hello';
 import Login from './views/login';
+import MovieDetails from './views/movieDetails';
 
 const RootStack = createStackNavigator(
   {
     Login: Login,
     Home: Home,
     Hello: Hello,
+    MovieDetails: MovieDetails
   },
   {
     initialRouteName: 'Login',

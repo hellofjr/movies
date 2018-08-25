@@ -17,13 +17,14 @@ import {
     RefreshControl
 } from 'react-native';
 
+
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             userName: '',
-            password: ''
+            password: '',
         }
     }
 
@@ -41,7 +42,7 @@ export default class Login extends React.Component {
                     <Text style={styles.text}>密码</Text><TextInput style={styles.input} placeholder="请输入密码" onChangeText={(text) => { this.setState({ password: text }) }}></TextInput>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <Button style={styles.button} color='#f4511e' title="登录" onPress={() => { if (this.checkUserValid()) { this.props.navigation.navigate("Home") }; }}></Button>
+                    <Button style={styles.button} color='#f4511e' title="登录" onPress={() => this.login(this.props.navigation.navigate)}></Button>
                 </View>
             </View>
         );
@@ -54,12 +55,16 @@ export default class Login extends React.Component {
      * @returns
      * @memberof Login
      */
-    checkUserValid() {
+    login(navigate) {
         if (this.state.userName && this.state.password) {
-            return true;
+            navigate('Home');
         } else {
-            return false;
+            this.errorAlert();
         }
+    }
+
+    errorAlert(){
+        Alert.alert('错误提示','请检查用户名与密码!',null)
     }
 }
 

@@ -18,6 +18,7 @@ import {
   ListView,
   Alert,
   TouchableHighlight,
+  TouchableOpacity,
   Image,
   RefreshControl
 } from 'react-native';
@@ -52,14 +53,18 @@ export default class Home extends React.Component {
           subTitle:'描述3'
         }]),
       advertisements:[
-      {url:require('../images/ad1.jpg')},
-      {url:require('../images/ad2.jpg')},
-      {url:require('../images/ad3.jpg')}]
+        {url:require('../images/ad1.jpg')},
+        {url:require('../images/ad2.jpg')},
+        {url:require('../images/ad3.jpg')},
+        {url:require('../images/ad4.jpg')},
+        {url:require('../images/ad5.jpg')}
+      ]
     };
   }
 
   static navigationOptions = {
-    title: 'Home',
+    title: '影片库',
+    headerLeft: <View />
   };
 
   render() {
@@ -93,7 +98,7 @@ export default class Home extends React.Component {
           </View>
         </View>
         <View style={styles.products}>
-          <ListView dataSource={this.state.dataSource} renderRow={this.renderRow} renderSeparator={this.renderSeparator} refreshControl={this.renderRefreshingControl()}/>
+          <ListView dataSource={this.state.dataSource} renderRow={this.renderRow.bind(this)} renderSeparator={this.renderSeparator} refreshControl={this.renderRefreshingControl()}/>
         </View>
       </View>
     );
@@ -110,7 +115,7 @@ export default class Home extends React.Component {
   startTimer(){
     this.interval = setInterval(()=>{
       nextPage = this.state.currentPage + 1;
-      if(nextPage >= 3){
+      if(nextPage >= 5){
         nextPage = 0;
       }
       this.setState({currentPage:nextPage});
@@ -124,15 +129,11 @@ export default class Home extends React.Component {
       <View style={styles.row}>
         <Image source={rowData.image} style={styles.productImage}></Image>
         <View style={styles.productText}>
-          <Text style={styles.productTitle}>{rowData.title}</Text>
+          <Text onPress={() => {this.getMovieDetails(this.props.navigation.navigate)}} style={styles.productTitle}>{rowData.title}</Text>
           <Text style={styles.productSubtitle}>{rowData.subTitle}</Text>
         </View>
       </View>
       )
-  }
-
-  search(){
-    Alert.alert('按下了搜索'+this.state.searchText,null,null);
   }
 
   touchScroll(){
@@ -163,6 +164,10 @@ export default class Home extends React.Component {
       }))
       this.setState({isRefreshing:false,dataSource:ds.cloneWithRows(products)});
     }, 2000);
+  }
+
+  getMovieDetails(navigate){
+    navigate('MovieDetails');
   }
 }
 
