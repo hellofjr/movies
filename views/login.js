@@ -34,16 +34,15 @@ export default class Login extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.searchBar}>
-                    <Text>用户名</Text><TextInput style={styles.input} placeholder="请输入用户名" onChangeText={(text) => { this.setState({ userName: text }) }}></TextInput>
+                <View style={styles.userInput}>
+                    <Text style={styles.text}>用户名</Text><TextInput style={styles.input} placeholder="请输入用户名" onChangeText={(text) => { this.setState({ userName: text }) }}></TextInput>
                 </View>
-                <View style={styles.searchBar}>
-                    <Text>密码</Text><TextInput style={styles.input} placeholder="请输入密码" onChangeText={(text) => { this.setState({ password: text }) }}></TextInput>
+                <View style={styles.userInput}>
+                    <Text style={styles.text}>密码</Text><TextInput style={styles.input} placeholder="请输入密码" onChangeText={(text) => { this.setState({ password: text }) }}></TextInput>
                 </View>
-                <View style={styles.searchBar}>
-                    <Button title="登录" onPress={() => { if (this.checkUserValid()) { this.props.navigation.navigate("Home") }; }}></Button>
+                <View style={styles.buttonContainer}>
+                    <Button style={styles.button} color='#f4511e' title="登录" onPress={() => { if (this.checkUserValid()) { this.props.navigation.navigate("Home") }; }}></Button>
                 </View>
-
             </View>
         );
     }
@@ -66,17 +65,36 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
+        marginTop: Platform.OS === 'ios'?200:0,
         flex: 1,
     },
-    searchBar: {
-        // marginTop: Platform.OS === 'ios'?20:0, //判断android还是ios
+    userInput: {
+        marginTop: Platform.OS === 'ios'?20:0, //判断android还是ios
         height: 40,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    text: {
+        flex: 1,
+        marginLeft: 20,
+        color: '#f4511e'
     },
     input: {
-        flex: 1,
+        flex: 2,
         borderColor: 'gray',
         borderWidth: 2,
-        borderRadius: 10
+        borderRadius: 10,
+        marginRight: 20
+    },
+    buttonContainer: {
+        marginTop: Platform.OS === 'ios'?100:0,
+        borderColor: 'blue',
+        borderWidth: 2,
+        width: 150,
+        marginLeft: (Dimensions.get('window').width - 150)/2,
+        justifyContent: 'center',
+    },
+    button: {
+        flex: 1,
     }
 })
