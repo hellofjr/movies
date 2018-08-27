@@ -17,6 +17,8 @@ import {
     RefreshControl
 } from 'react-native';
 
+import loginService from '../service/loginService';
+
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -57,7 +59,11 @@ export default class Login extends React.Component {
      */
     login(navigate) {
         if (this.state.userName && this.state.password) {
-            navigate('Home');
+            loginService.login(this.state.userName,this.state.password).then(res => {
+                navigate('Home');
+            },rej => {
+                Alert.alert('错误','获取资源失败!',null)
+            })
         } else {
             this.errorAlert();
         }
