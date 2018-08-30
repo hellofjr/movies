@@ -27,8 +27,12 @@ export default class MovieDetails extends React.Component {
     };
 
     render(){
+        const { navigation } = this.props;
+        const movieId = navigation.getParam('movieId', 'NO-ID');
         return(
-            <View></View>
+            <View>
+                <Text>{movieId}</Text>
+            </View>
         );
     }
 

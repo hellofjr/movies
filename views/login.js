@@ -59,11 +59,11 @@ export default class Login extends React.Component {
      */
     login(navigate) {
         if (this.state.userName && this.state.password) {
-            loginService.login(this.state.userName,this.state.password).then(res => {
+            //loginService.login(this.state.userName,this.state.password).then(res => {
                 navigate('Home');
-            },rej => {
-                Alert.alert('错误','获取资源失败!',null)
-            })
+            //},rej => {
+            //    Alert.alert('错误','获取资源失败!',null)
+            //})
         } else {
             this.errorAlert();
         }

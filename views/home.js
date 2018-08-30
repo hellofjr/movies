@@ -167,7 +167,10 @@ export default class Home extends React.Component {
   }
 
   getMovieDetails(navigate){
-    navigate('MovieDetails');
+    let params = {
+      movieId : 'abcd'
+    }
+    navigate('MovieDetails',params);
   }
 }
 

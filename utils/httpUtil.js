@@ -43,7 +43,7 @@ HTTPUtil.post = function(url, formData, headers) {
     return new Promise(function (resolve, reject) {
       fetch(url, {
             method: 'POST',
-            headers: headers,
+            headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }),
             body:formData,
           })
           .then((response) => {
